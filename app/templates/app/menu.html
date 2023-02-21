@@ -1,0 +1,217 @@
+﻿{% extends "app/layout.html" %}
+
+{% block content %}
+
+<head>
+    <style>
+        body {
+            background-color: beige;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+        h2 {
+            text-align: center;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+        }
+
+        p {
+            color: rgb(0, 0, 0);
+        }
+
+        select {
+            color: rgb(0, 0, 0);
+        }
+
+        input {
+            margin-bottom: 8px;
+            padding: 1px;
+            border-radius: 5px;
+            border: none;
+            box-shadow: 0px 0px 5px rgb(0, 0, 0);
+        }
+
+        button {
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            margin-right: 10px;
+        }
+
+        button:hover {
+            background-color: rgb(124, 124, 107);
+            /* Change button color on hover */
+            cursor: pointer;
+            transition: all 0.5s;
+        }
+    </style>
+</head>
+<div>
+    <br />
+    {% if is_employee %}
+    <h2>Employee Menu</h2>
+    {% elif is_manager %}
+    <h2>Manager Menu</h2>
+    {% elif is_PM %}
+    <h2>Purchasing Manager Menu</h2>
+    {% elif is_Super %}
+    <h2>Supervisor Menu</h2>
+    {% elif is_FM %}
+    <h2>Finance Manager Menu</h2>
+    {% elif is_Manager %}
+    <h2>Manager Menu</h2>
+
+    {% endif %}
+
+    <br />
+    <table>
+        {% if is_employee %}
+        <tr>
+            <td>
+                <form class="margintop" action='additemform' method='GET'>
+                    <button type="submit" class="btn btn-outline-info waves-effect">Add Item</button><br />
+                </form>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <form class="margintop" action='module2' method='GET'>
+                    <button type="submit" class="btn btn-outline-info waves-effect">Module 2</button><br />
+                </form>
+            </td>
+        </tr>
+
+        {% elif is_manager %}
+        <tr>
+            <td>
+                <form class="margintop" action='module3' method='GET'>
+                    <button type="submit" class="btn btn-outline-info waves-effect">Module 3</button><br />
+                </form>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <form class="margintop" action='module4' method='GET'>
+                    <button type="submit" class="btn btn-outline-info waves-effect">Module 4</button><br />
+                </form>
+            </td>
+        </tr>
+
+        {% elif is_Manager %}
+        <tr>
+            <td>
+                <form class="margintop" action='viewPOlist' method='GET'>
+                    <button type="submit" class="btn btn-outline-info waves-effect">Manager View Purchase
+                        Order</button><br />
+                </form>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <form class="margintop" action='approvePOlist' method='GET'>
+                    <button type="submit" class="btn btn-outline-info waves-effect">Purchase Order Approval
+                    </button><br />
+                </form>
+            </td>
+        </tr>
+
+        {% elif is_PM %}
+
+        <tr>
+            <td>
+                <form class="margintop" action='addvendorform' method='GET'>
+                    <button type="submit" class="btn btn-outline-info waves-effect">Add vendors
+                    </button><br />
+                </form>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <form class="margintop" action='addquotation' method='GET'>
+                    <button type="submit" class="btn btn-outline-info waves-effect">Key in Quotation</button><br />
+                </form>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <form class="margintop" action='viewquotationlist' method='GET'>
+                    <button type="submit" class="btn btn-outline-info waves-effect">Purchasing Manager View Quotation
+                    </button><br />
+                </form>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <form class="margintop" action='viewapprovedPOlist' method='GET'>
+                    <button type="submit" class="btn btn-outline-info waves-effect">View Approved Purchase Order
+                    </button><br />
+                </form>
+            </td>
+        </tr>
+
+        {% elif is_Super %}
+        <tr>
+            <td>
+                <form class="margintop" action='viewquotationlist' method='GET'>
+                    <button type="submit" class="btn btn-outline-info waves-effect">Supervisor View
+                        quotation</button><br />
+                </form>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <form class="margintop" action='approvequotationlist' method='GET'>
+                    <button type="submit" class="btn btn-outline-info waves-effect">Select quotation
+                    </button><br />
+                </form>
+            </td>
+        </tr>
+
+        {% elif is_FM %}
+        <tr>
+            <td>
+                <form class="margintop" action='viewselectedquotationlist' method='GET'>
+                    <button type="submit" class="btn btn-outline-info waves-effect">View selected
+                        quotation</button><br />
+                </form>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <form class="margintop" action='createPOform' method='GET'>
+                    <button type="submit" class="btn btn-outline-info waves-effect">Create Purchase Order
+                    </button><br />
+                </form>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <form class="margintop" action='viewPOlist' method='GET'>
+                    <button type="submit" class="btn btn-outline-info waves-effect">Finance Manager View Purchase Order
+                    </button><br />
+                </form>
+            </td>
+        </tr>
+
+
+        {% else %}
+
+        <tr>
+            <td>
+                <p>Undefined User.</p>
+                <p>Please log in to another account to view specific main menu. </p>
+            </td>
+        </tr>
+
+        {% endif %}
+    </table>
+</div>
+
+{% endblock %}

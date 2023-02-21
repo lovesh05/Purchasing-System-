@@ -1,0 +1,140 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+
+<head>
+    <style>
+        body {
+            background-color: beige;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+        h1,
+        h2,
+        h3 {
+
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+        }
+
+        p {
+            color: rgb(0, 0, 0);
+        }
+
+        select {
+            color: rgb(0, 0, 0);
+        }
+
+        input {
+            margin-bottom: 8px;
+            padding: 1px;
+            border-radius: 5px;
+            border: none;
+            box-shadow: 0px 0px 5px rgb(0, 0, 0);
+        }
+
+        button {
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            margin-right: 10px;
+        }
+
+        button:hover {
+            background-color: #7ce485;
+            /* Change button color on hover */
+            cursor: pointer;
+            transition: all 0.5s;
+        }
+    </style>
+</head>
+
+<div style="background-color: #a18060;" class="jumbotron">
+    <h1>PURCHASING SYSTEM</h1>
+    <h2></h2>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Purchasing Manager</h2>
+        <p>
+            LOVESH ANAND A/L A.KUMERESHWARAN
+        </p>
+    </div>
+    <div class="col-md-4">
+        <h2>Modules</h2>
+        <p>
+            Key in Quotation
+        </p>
+        <p>
+            Purchasing Manager View Quotation
+        </p>
+        <p>
+            Add vendors
+        </p>
+        <p>
+            View Approved Purchase Order
+        </p>
+    </div>
+
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <h2>Supervisor</h2>
+        <p>
+            THAMIZHARAASAN A/L CHANDRAN
+        </p>
+    </div>
+    <div class="col-md-4">
+        <h2>Modules</h2>
+        <p>
+            Supervisor View quotation
+
+        </p>
+        <p>
+            Select quotation
+        </p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <h2>Finance Manager</h2>
+        <p>
+            MUHAMMAD AIMAN HAZIQ BIN FAIROSHAWAL
+        </p>
+    </div>
+    <div class="col-md-4">
+        <h2>Modules</h2>
+        <p>
+            View selected quotation
+        </p>
+        <p>
+            Create Purchase Order
+        </p>
+        <p>
+            Finance Manager View Purchase Order
+        </p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <h2>Manager</h2>
+        <p>
+            NUR IRDINA SOFEA BINTI MOHD MAHADIR
+        </p>
+    </div>
+    <div class="col-md-4">
+        <h2>Modules</h2>
+        <p>
+            Manager View Purchase Order
+
+        </p>
+        <p>
+            Purchase order approval
+        </p>
+    </div>
+</div>
+
+{% endblock %}
+
+<!-- thamizh03 - Supervisor
+aiman81 - Finance Manager
+irdina86 - Manager -->

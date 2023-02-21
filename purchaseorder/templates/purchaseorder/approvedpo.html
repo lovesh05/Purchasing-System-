@@ -1,0 +1,70 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+
+<head>
+  <style>
+    body {
+      background-color: beige;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+
+    h2,
+    h3 {
+      text-align: center;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+    }
+
+    p {
+      color: rgb(0, 0, 0);
+    }
+
+    select {
+      color: rgb(0, 0, 0);
+    }
+
+    input {
+      margin-bottom: 8px;
+      padding: 1px;
+      border-radius: 5px;
+      border: none;
+      box-shadow: 0px 0px 5px rgb(0, 0, 0);
+    }
+
+    button {
+      margin-right: 10px;
+    }
+
+    button:hover {
+      background-color: #7ce485;
+      /* Change button color on hover */
+      cursor: pointer;
+      transition: all 0.5s;
+    }
+  </style>
+</head>
+
+<body bgcolor="lightblue">
+
+  <h2 align=center="font-family:Georgia;">Purchase Order Approval</h2>
+  <h3>Purchase Order #{{po_object}}</h3>
+
+  <p>&emsp;</p>
+
+
+  <form class="margintop" action="" method='POST'>
+    {% csrf_token %}
+
+    <h2>Purchase Order approved successfully</h2>
+
+    <!-- <a class="btn btn-success btn-square buttonsize" target="_blank" href="{% url 'viewquotationlist' %}/{{quotation_object.quotationID}} ">Open</a> -->
+
+    <a class="btn btn-danger btn-square buttonsize" href="/menu">Back</a>
+
+  </form>
+
+</body>
+
+
+{% endblock %}

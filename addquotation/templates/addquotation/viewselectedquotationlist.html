@@ -1,0 +1,92 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+
+<head>
+  <style>
+    body {
+      background-color: beige;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+
+    h2,
+    h3 {
+      text-align: center;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+    }
+
+    p {
+      color: rgb(0, 0, 0);
+    }
+
+    select {
+      color: rgb(0, 0, 0);
+    }
+
+    input {
+      margin-bottom: 8px;
+      padding: 1px;
+      border-radius: 5px;
+      border: none;
+      box-shadow: 0px 0px 5px rgb(0, 0, 0);
+    }
+
+    button {
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      margin-right: 10px;
+    }
+
+    button:hover {
+      background-color: #7ce485;
+      /* Change button color on hover */
+      cursor: pointer;
+      transition: all 0.5s;
+    }
+  </style>
+</head>
+
+<body bgcolor="lightblue">
+
+  <h2 align=center="font-family:Georgia;">View selected/approved Quotation</h2>
+  <h3>List of Quotation</h3>
+
+  <p>&emsp;</p>
+
+
+  <form class="margintop" action="" method='POST'>
+    {% csrf_token %}
+
+    <!-- Add Table that will display Quotation ID and Status  -->
+    <table>
+      <tr>
+        <th>Quotation ID</th>
+        <th>Approval Status</th>
+
+      </tr>
+
+      {% for q in quotationList %}
+      <tr>
+        <td><button><a style="color: #000000" href="/viewquotationdetails/{{q.quotationID}}/ ">Quotation No :
+              {{q.quotationID}}</a></button></td>
+        <td>{{q.quotationStatus}}</td>
+
+      </tr>
+      {% endfor %}
+    </table>
+
+
+    <!-- <p><label>
+                {% for q in quotationList %}
+                <button> <a href="/viewquotationdetails/{{q.quotationID}}/ ">{{q.quotationID}}</a></button><br>
+                {% endfor %}
+            </label></p> -->
+    <br>
+    <a class="btn btn-danger btn-square buttonsize" href="/menu">Back</a>
+
+  </form>
+
+</body>
+
+
+{% endblock %}
