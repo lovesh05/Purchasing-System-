@@ -1,0 +1,175 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+
+<head>
+  <style>
+    body {
+      background-color: beige;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+
+    h2 {
+      text-align: center;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+    }
+
+    p {
+      color: rgb(0, 0, 0);
+    }
+
+    select {
+      color: rgb(0, 0, 0);
+    }
+
+    input {
+      margin-bottom: 8px;
+      padding: 1px;
+      border-radius: 5px;
+      border: none;
+      box-shadow: 0px 0px 5px rgb(0, 0, 0);
+    }
+
+    button {
+      margin-right: 10px;
+    }
+
+    button:hover {
+      background-color: #394f79;
+      /* Change button color on hover */
+      cursor: pointer;
+      transition: all 0.5s;
+    }
+
+    table {
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+    }
+  </style>
+</head>
+
+<div class="form">
+  <h2>Create Quotation</h2>
+  <p>&emsp;</p>
+
+  <form class="margintop" action='addquotation' method='POST'>
+    {% csrf_token %}
+
+    <div class="input">
+      <label for="vendorID">Vendor ID :</label>
+      <select name="vendorID" id="vendorID">
+        {% for x in vendorList %}
+        <option value="{{x.vendorID}}" selected="selected">{{x.vendorID}}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <p>&emsp;</p>
+
+    <div class="input">
+      <label for="purchaserID">Purchaser ID :</label>
+      <select name="purchaserID" id=purchaserID>
+        {% for x in purchaserList %}
+        <option value="{{x.purchaserID}}" selected="selected">{{x.purchaserID}}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <p>&emsp;</p>
+
+    <label for="date">Quotation Date :</label>
+    <input type="date" id="date" name="quotationDate">
+
+    <p>&emsp;</p>
+
+    <label for="date">Quotation Valid Date :</label>
+    <input type="date" id="date" name="quotationValidDate">
+
+    <h3></h3>
+
+    <p id="bord">
+    <table id='table'>
+      <thead>
+        <tr>
+          <th id='productName'>Product Name</th>
+          <th id='productP'>Product Price</th>
+          <th id='productQ'>Product Quantity</th>
+          <th id='productT'>Total</th>
+        </tr>
+      </thead>
+
+      <tbody>
+      </tbody>
+    </table>
+    <input type="hidden" name="products" id="products">
+
+    <h3></h3>
+    <label for="total">Total Price (RM) :</label>
+    <input type="number" id="total" name="totalPrice">
+
+
+    <p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</p>
+    <p id="bord"></p>
+
+    <button type="submit" class="btn btn-success btn-square buttonsize">Save</button>
+    <a class="btn btn-danger btn-square buttonsize" href="/menu">Back</a>
+
+  </form>
+
+  <h1></h1>
+
+  <!-- <p><input type="text" id='item_id' placeholder='Item id'  class="form-control" /></p> -->
+  <p><input type="text" id="product_name" placeholder='Enter product name'></p>
+  <p><input type="text" id="product_price" placeholder='Enter product price'></p>
+  <p><input type="text" id="product_quantity" placeholder='Enter item quantity'></p>
+
+  <button class='add-row' style="background-color: aquamarine;">Add</button>
+  <!-- <button onclick="doSomething()" style="background-color:#333333;color:#00FF00;border-radius:5px">click me!</button> -->
+  <!-- <a class="btn btn-danger btn-square buttonsize" href="/menu">Cancel</a> -->
+
+
+  <script>
+    let totals = 0;
+    $(document).ready(function () {
+      let products = []
+      $(".add-row").click(function () {
+
+        let newProduct = {
+          productName: $("#product_name").val(),
+          productPrice: $("#product_price").val(),
+          productQuantity: $("#product_quantity").val(),
+          productTotal: Number($("#product_quantity").val()) * Number($("#product_price").val())
+        };
+        products.push(newProduct);
+
+        $("#products").val(JSON.stringify(products));
+
+        markup = "<tr><td>"
+
+          + $("#product_name").val() + "</td><td> RM "
+          + $("#product_price").val() + "</td><td>"
+          + $("#product_quantity").val() + "</td>><td> RM"
+          + Number($("#product_quantity").val()) * Number($("#product_price").val()) + "</td></tr>";
+        tableBody = $("table tbody");
+        tableBody.append(markup);
+
+        totals += Number($("#product_quantity").val()) * Number($("#product_price").val());
+        document.getElementById("total").value = totals;
+
+
+        // $("total").val().innerHTML = total;
+
+      });
+    });
+
+  </script>
+
+
+
+
+  </body>
+</div>
+
+
+{% endblock %}

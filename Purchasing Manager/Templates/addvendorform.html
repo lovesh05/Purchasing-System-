@@ -1,0 +1,79 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+
+<head>
+  <style>
+    body {
+      background-color: beige;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+
+    h2 {
+      text-align: center;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+    }
+
+    p {
+      color: rgb(0, 0, 0);
+    }
+
+    select {
+      color: rgb(0, 0, 0);
+    }
+
+    input {
+      margin-bottom: 8px;
+      padding: 1px;
+      border-radius: 5px;
+      border: none;
+      box-shadow: 0px 0px 5px rgb(0, 0, 0);
+    }
+
+    button {
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      margin-right: 10px;
+    }
+
+    button:hover {
+      background-color: #394f79;
+      /* Change button color on hover */
+      cursor: pointer;
+      transition: all 0.5s;
+    }
+  </style>
+</head>
+<div class="form" align="center">
+  <br>
+  <hi>
+    <h2><strong>Add Vendor</strong></h2>
+  </hi>
+  <br><br>
+
+  <form class="addvendorsubmission" action="addvendorconfirmation" method="POST">
+    {% csrf_token %}
+
+    <div class="input">
+      <p><input type="text" name='vendorCompanyName' placeholder='Enter Company Name' class="form-control" /></p>
+      <p><input type="text" name="vendorAddress" placeholder='Enter Company Address' class="form-control"></p>
+      <p><input type="text" name="vendorName" placeholder='Enter Vendor Name' class="form-control"></p>
+      <p><input type="text" name="vendorContact" placeholder='Enter Contact Number' class="form-control"></p>
+
+    </div>
+
+    <div class="submitbutton">
+      <button type="submit" class="btn btn-success btn-square buttonsize"><span>Submit</span></button>
+    </div>
+
+    <div class="cancelbutton">
+      <a class="btn btn-danger btn-square buttonsize" href="/menu"><span>Cancel</span></a>
+    </div>
+
+
+
+  </form>
+
+</div>
+
+{% endblock %}

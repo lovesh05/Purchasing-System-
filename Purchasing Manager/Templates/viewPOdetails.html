@@ -1,0 +1,147 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+
+<head>
+  <style>
+    body {
+      background-color: beige;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+
+    h2 {
+      text-align: center;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+    }
+
+    p {
+      color: rgb(0, 0, 0);
+    }
+
+    select {
+      color: rgb(0, 0, 0);
+    }
+
+    input {
+      margin-bottom: 8px;
+      padding: 1px;
+      border-radius: 5px;
+      border: none;
+      box-shadow: 0px 0px 5px rgb(0, 0, 0);
+    }
+
+    button {
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      margin-right: 10px;
+    }
+
+    button:hover {
+      background-color: #394f79;
+      /* Change button color on hover */
+      cursor: pointer;
+      transition: all 0.5s;
+    }
+  </style>
+</head>
+
+<body bgcolor="lightblue">
+
+
+  <h2 align=center="font-family:Georgia;">View Purchase Order Details</h2>
+  <p>&emsp;</p>
+
+  <form class="margintop" action='addPO' method='POST'>
+    {% csrf_token %}
+
+    <div class="input-group">
+      <span class="input-group-btn"></span>
+
+      <label for="qiD">Purchase Order ID : </label>
+      <span>{{po_object.poID}}</span>
+
+      <br>
+
+      <label for="vendorID">Vendor ID : </label>
+      <span>{{po_object.vendorID}}</span>
+
+    </div>
+
+
+    <div class="input-group">
+
+      <label for="pid">Purchaser ID : </label>
+      <span>{{po_object.purchaserID}}</span>
+
+      <span class="input-group-btn" style="width: 100px;"></span>
+
+    </div>
+
+
+
+    <label for="date">Purchase Order Date :</label>
+    <span>{{po_object.poDate}}</span>
+
+    <br>
+
+    <label for="date">Purchase Order Valid Date :</label>
+    <span>{{po_object.poValidDate}}</span>
+
+
+    <h3></h3>
+
+    <p id="bord">
+
+    <table id='table'>
+      <thead>
+        <tr>
+
+          <th id='productName'>Item Name</th>
+          <th id='productP'>Item Price</th>
+          <th id='productQ'>Item Quantity</th>
+          <th id='productT'>Total</th>
+        </tr>
+      </thead>
+
+      <tbody>
+
+        {% for i in items %}
+
+        <tr>
+          <td>{{i.itemName}}</td>
+          <td>{{i.itemPricePerUnit}}</td>
+          <td>{{i.itemQtyNeeded}}</td>
+          <td>{{i.itemPrice}}</td>
+        </tr>
+
+        {% endfor %}
+
+
+      </tbody>
+
+
+    </table>
+    <input type="hidden" name="items" id="items">
+
+    <h3></h3>
+
+    <p id='bord'>
+
+      <label for="totalP">Total Price : RM </label>
+      <b><span>{{po_object.orderSubtotal}}</span></b>
+
+
+    </p>
+
+    <p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</p>
+
+    <a class="btn btn-danger btn-square buttonsize" href="/menu">Back</a>
+
+  </form>
+
+
+</body>
+
+
+
+{% endblock %}
